@@ -88,13 +88,13 @@ const GameScreen = () => {
         setModalText("Those were all the cities!");
         fetchHighScore();
         setModalClass("modal-visible fade");
-        disabled(true);
+        setDisabled(true);
       } else if (playData.score === 9) {
         result("You Win!");
         modalText("You placed all the cities correctly!");
         fetchHighScore();
         modalClass("modal-visible fade");
-        disabled(true);
+        setDisabled(true);
       }
       setPlay(data.data);
       console.log("playData", playData);
