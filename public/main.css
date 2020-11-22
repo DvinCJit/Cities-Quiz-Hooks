@@ -1,0 +1,311 @@
+html,
+body {
+  height: 100vh;
+}
+
+.mapContainer {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.marker {
+  background-image: url(https://images.unsplash.com/photo-1526297003708-f5a1c2c9c6e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-visible {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 16rem;
+  border-radius: 0.5rem;
+}
+
+.modal-body {
+  font-family: monospace;
+  margin: 0.5em;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.3rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+  font-size: 1.5em;
+}
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.play-button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #2c2c2c;
+  margin: 0 0.3em 0.3em 0;
+  /* border-radius: 0.12em; */
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #2c2c2c;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.play-button:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.startgame {
+  height: 100vh;
+  background: url(https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.start-container {
+  height: 100vh;
+  overflow: hidden;
+  background: #c89daa91;
+}
+
+.text-container {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.insert-name {
+  font-size: 2.2em;
+  color: #4f0044;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown 3s;
+}
+
+.fadeDown {
+  -webkit-animation: fadeInDown;
+  animation: fadeInDown 3s;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.rainbow {
+  animation: color-change 5s;
+}
+
+@keyframes color-change {
+  10% {
+    color: aquamarine;
+  }
+  40% {
+    color: crimson;
+  }
+  60% {
+    color: rgb(255, 208, 0);
+  }
+  100% {
+    color: #4f0044;
+  }
+}
+
+.input-name {
+  background-color: #f5deb352;
+  border: none;
+  height: 40px;
+  padding: 0;
+  width: 8.8em;
+  font-size: 2em;
+  text-align: center;
+  color: white;
+}
+
+.input-name:focus {
+  background-color: #bf63631f;
+}
+
+.play-btn {
+  padding: 0.5em 5em;
+  display: block;
+  margin: 1em auto;
+  font-size: 1.8em;
+}
+
+.btn {
+  border-radius: 0.12em;
+  cursor: pointer;
+  background-color: #edd630;
+  color: #17114c;
+  /* font-size: 1.5em; */
+  font-family: monospace;
+  text-transform: uppercase;
+  border: none;
+  font-weight: 900;
+}
+
+h1 {
+  font-family: "Bungee Shade", cursive;
+  color: #4f0044;
+}
+
+.gameHeader {
+  position: absolute;
+  z-index: 4;
+  top: -30px;
+  left: 7px;
+  cursor: pointer;
+}
+
+.startHeader {
+  text-align: center;
+}
+
+.place-city {
+  position: absolute;
+  bottom: 7px;
+  right: 10px;
+  overflow: hidden;
+  z-index: 4;
+  padding: 0.35em 1.2em;
+  font-size: 1.5em;
+}
+
+.scoreboard {
+  position: absolute;
+  z-index: 4;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: x-large;
+  top: 65px;
+  background-color: #ffffff;
+  left: 7px;
+}
+
+.scoreboard-text {
+  display: inline-block;
+  margin: 4px 8px;
+}
+
+.info {
+  position: absolute;
+  z-index: 4;
+  top: 87px;
+  left: 7px;
+  /* right: 13px; */
+  /* bottom: 34px; */
+  font-family: monospace;
+  font-size: 1.3em;
+  color: #a911d7;
+}
+
+@media screen and (min-width: 800px) {
+  .gameHeader {
+    font-size: 2.5em;
+    top: -30px;
+    left: 20px;
+  }
+
+  .scoreboard {
+    top: 34px;
+    right: 25px;
+    left: auto;
+  }
+
+  .scoreboard-text {
+    margin: 6px 10px;
+  }
+
+  .info {
+    left: auto;
+    right: 25px;
+    top: 52px;
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 641px) {
+  .info {
+    font-size: 1.5em;
+  }
+
+  .place-city {
+    font-size: 2em;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  .modal-content {
+    width: 24rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .gameHeader {
+    left: 2em;
+  }
+
+  .scoreboard,
+  .info {
+    right: 3em;
+  }
+
+  .place-city {
+    right: 2.5em;
+  }
+}
