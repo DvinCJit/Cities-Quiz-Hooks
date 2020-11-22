@@ -12,11 +12,12 @@ module.exports.postName = (req, res) => {
     });
   }
 
-  console.log("body", req.body);
+  // console.log("body", req.body);
   const name = req.body.value;
   const citiesArr = [];
+  // eslint-disable-next-line no-unused-vars
   const cityNames = cities.capitalCities.map((c) => {
-    citiesArr.push(c.capitalCity);
+    return citiesArr.push(c.capitalCity);
   });
   const current_city = citiesArr[Math.floor(Math.random() * citiesArr.length)];
 
@@ -31,7 +32,7 @@ module.exports.postName = (req, res) => {
   });
 
   if (!play) {
-    return res.status(400).json({ success: false, error: err });
+    return res.status(400).json({ success: false, error: 'err' });
   }
 
   play
@@ -53,11 +54,11 @@ module.exports.placeCity = (req, res) => {
       // console.log("filtered", filteredCity);
 
       // JavaScript version of the Haversine formula as implemented by the GeoDataSource.com
-      distance = (lat1, lon1, lat2, lon2, unit) => {
+      let distance = (lat1, lon1, lat2, lon2, unit) => {
         let radlat1 = (Math.PI * lat1) / 180;
         let radlat2 = (Math.PI * lat2) / 180;
-        let radlon1 = (Math.PI * lon1) / 180;
-        let radlon2 = (Math.PI * lon2) / 180;
+        // let radlon1 = (Math.PI * lon1) / 180;
+        // let radlon2 = (Math.PI * lon2) / 180;
         let theta = lon1 - lon2;
         let radtheta = (Math.PI * theta) / 180;
         let dist =
@@ -66,15 +67,15 @@ module.exports.placeCity = (req, res) => {
         dist = Math.acos(dist);
         dist = (dist * 180) / Math.PI;
         dist = dist * 60 * 1.1515;
-        if (unit == "K") {
+        if (unit === "K") {
           dist = dist * 1.609344;
         }
-        if (unit == "N") {
+        if (unit === "N") {
           dist = dist * 0.8684;
         }
         return dist;
       };
-      console.log(coords.lat);
+      // console.log(coords.lat);
 
       const measure = distance(
         Number(filteredCity[0].lat),
@@ -92,7 +93,7 @@ module.exports.placeCity = (req, res) => {
       citiesArr = citiesArr.filter((city) => {
         return !response.placed_cities.includes(city);
       });
-      console.log(">>> ", citiesArr, response.placed_cities);
+      // console.log(">>> ", citiesArr, response.placed_cities);
 
       const current_city =
         citiesArr[Math.floor(Math.random() * citiesArr.length)];
