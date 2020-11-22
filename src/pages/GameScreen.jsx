@@ -3,21 +3,22 @@ import mapboxgl from "mapbox-gl";
 import api from "../api";
 import history from "../history";
 
-console.log(process.env);
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
 const GameScreen = () => {
+  const zoom = 3.5;
+  const lat = 49.541342;
+  const lng = 11.507795;
   const [result, setResult] = useState("");
   const [modalText, setModalText] = useState("");
   const [play, setPlay] = useState([]);
   const [highScore, setHighScore] = useState(0);
-  const [lat, setLat] = useState(49.541342);
-  const [lng, setLng] = useState(11.507795);
-  const [zoom, setZoom] = useState(3.5);
   const [currentCoords, setCurrentCoords] = useState({});
   const [modalClass, setModalClass] = useState("modal fade");
   const [disabled, setDisabled] = useState(false);
   const mapContainer = useRef(null);
+
+  // Initialize map and marker on first render
 
   useEffect(() => {
     window.map = new mapboxgl.Map({
@@ -40,11 +41,14 @@ const GameScreen = () => {
 
     window.marker.on("dragend", onDragEnd);
 
+    // Set initial data for scoreboard
+
     const data = window.localStorage.getItem("play");
     const obj = JSON.parse(data);
-    console.log(obj.data);
     setPlay(obj.data);
   }, [lat, lng, zoom]);
+
+  // Handle place city on button click
 
   const handlePlaceCity = async (e) => {
     e.preventDefault();
@@ -95,46 +99,9 @@ const GameScreen = () => {
       setPlay(data.data);
       console.log("playData", playData);
     });
-
-    // const popup = new mapboxgl.Popup({ offset: 25 }).setText(
-    //   `You were ${Math.round(play.distance)} km off from ${
-    //     play.prev_coords.capitalCity
-    //   }.`
-    // );
-
-    // const elem = document.createElement("div");
-    // elem.className = "marker";
-
-    // console.log(play);
-
-    // new mapboxgl.Marker(elem)
-    //   .setLngLat([play.prev_coords.long, play.prev_coords.lat])
-    //   .setPopup(popup)
-    //   .addTo(window.map);
-
-    // console.log("map after", window.map);
-    // console.log("marker after", window.marker);
-
-    // if (play.km_left <= 0) {
-    //   setResult("Game Over");
-    //   setModalText("You run out of kilometres!");
-    //   fetchHighScore();
-    //   setModalClass("modal-visible fade");
-    //   setDisabled(true);
-    // } else if (play.placed_cities.length === 10 && play.score !== 9) {
-    //   setResult("Game Over");
-    //   setModalText("Those were all the cities!");
-    //   fetchHighScore();
-    //   setModalClass("modal-visible fade");
-    //   disabled(true);
-    // } else if (play.score === 9) {
-    //   result("You Win!");
-    //   modalText("You placed all the cities correctly!");
-    //   fetchHighScore();
-    //   modalClass("modal-visible fade");
-    //   disabled(true);
-    // }
   };
+
+  // Get highest score  
 
   const fetchHighScore = async () => {
     await api.getHighScore().then((data) => {
@@ -143,9 +110,13 @@ const GameScreen = () => {
     });
   };
 
+  // Handle close modal
+
   const handleClose = () => {
     setModalClass("modal fade");
   };
+
+  // Handle play again
 
   const handlePlayAgain = () => {
     history.push("/");
@@ -170,7 +141,6 @@ const GameScreen = () => {
       <div
         ref={(el) => (mapContainer.current = el)}
         className="mapContainer"
-        // onClick={() => handleClick()}
       />
       <button
         className="place-city btn"
