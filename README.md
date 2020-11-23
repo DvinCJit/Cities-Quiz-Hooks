@@ -1,70 +1,43 @@
-# Cities-React-Hooks
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and implemented with MongoDB and Node.js.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Cities Quiz Game with React Hooks
 
-## Available Scripts
+Single page app made from scratch in two days with MERN stack and Mapbox.
 
-In the project directory, you can run:
+### Preview
 
-### `npm start`
+![Cities Quiz Preview](https://res.cloudinary.com/drdwtcsc4/image/upload/v1595756046/Others/2020-07-26_11-32-16_oqfuav.gif "Cities Quiz Preview")
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Game Description
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The player will see a map of Europe without Streets + Cities (Only Country-borders). Its mission is to find the right location to the city name on this map. After placing the needle pin, the game will show you the right location of the city and the difference of your needle pin and the city in kilometres. If it is in around 50km of the city, the selection will be defined as "correct".
 
-### `npm test`
+### Game Logic
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In the beginning, the player has a predetermined score of 1500 that symbolizes kilometres. At each round the difference between position of the city and your needle pin are reducing your score.
 
-### `npm run build`
+### Game End
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The game ends when no kilometres are left or when all the cities have been placed (correctly or not).
+The high score is the amount of cities you have found.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Setup - Production Mode
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To be able to run this application correctly on your machine or for future projects you might want to consider signing up to [Mapbox](https://www.mapbox.com/) and getting your own personal access token.
 
-### `npm run eject`
+Make sure to create a .env.local file in the root of your project and add the following variables: REACT_APP_MAPBOX_TOKEN and REACT_APP_STYLE, the second is the mapbox style for your map.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You need to have installed on your machine a stable version of [Nodejs](https://nodejs.org/en/download/) and [MongoDB](https://www.mongodb.com/try/download/community) to be able to run this project. You need to create a mongodb database and change the name of the connection string in 'server/db/index.js' of this project. [Part 3 of this tutorial](https://closebrace.com/tutorials/2017-03-02/the-dead-simple-step-by-step-guide-for-front-end-developers-to-getting-up-and-running-with-nodejs-express-and-mongodb) should be useful. Alternatively you can create a [Mongodb Atlas](https://www.mongodb.com/cloud/atlas) free account and get a cloud hosted database. Paste the uri from Atlas in the mongoose.connect('uri') part of 'server/db/index.js'.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you are using MongoDB Atlas make sure you create a .env file inside the server folder and add the following variable: ATLAS_URI
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Once you have downloaded or cloned this project follow these steps:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Open your terminal (I use "Visual Basic Studio" with the "git bash" terminal installed for windows) and go to the 'cities-quiz/server' directory with `cd cities-quiz/server/`.
+2. Install all dependencies with `npm install`. Once they are all installed you can continue to the next step.
+3. Run `npm start` to launch the server on **localhost:8080**. If you go to **localhost:8080/api/cities** on your browser you will see the cities JSON being served up by the server. You won't see anything else yet since we still have to set up the frontend.
+4. Open a **new terminal** and go to the 'cities-quiz' directory. If you are in the 'cities-quiz/server' directory use the command `cd ..`. If you are in the root directory 'cities-quiz-game' use this other command: `cd cities-quiz/`.
+5. Install all dependencies with `npm install`. This time it is the frontend dependencies. Once they are all installed you can continue to the next step.
+6. Run `npm start` to launch the app on **localhost:3000**. This might take a while. React will automatically open a tab on your browser after this last command and when it is done compiling you will see the Cities Quiz main page displayed on your browser.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For more information about React check out the readme on the 'cities-quiz' folder or go to [React's documentation page](https://reactjs.org/).
